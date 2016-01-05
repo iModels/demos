@@ -1,0 +1,21 @@
+package:
+  name: demos-dev
+  version: !!str 0.1.0.dev0
+
+requirements:
+  build:
+    - python
+
+  run:
+    - python
+
+test:
+  requires:
+    - pytest
+  commands:
+    - py.test --pyargs demos
+
+about:
+  home: http://imodels.github.io/demos
+  license: MIT
+  summary: Coming soon
