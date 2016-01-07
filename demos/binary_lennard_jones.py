@@ -5,9 +5,12 @@ import metamds as mds
 import mdtraj as md
 
 
-def build_system(n_particles, type1_fraction=0.5):
-    compound = mb.Compound()
-    return compound
+def build_system(box, n_particles, type1_fraction=0.5):
+    lj1 = mb.Particle(name='A')
+    lj2 = mb.Particle(name='B')
+    box1 = mb.fill_box(lj1, n_particles * type1_fraction, box)
+    box2 = mb.solvate(box1, lj2, n_particles * (1 - type1_fraction), box)
+    return box2
 
 if __name__ == '__main__':
     # YAML file defining sim tasks
@@ -15,6 +18,7 @@ if __name__ == '__main__':
     # gromacs input script
     # lammps input script
 
+    compound = build_system([3, 3, 3], 200, 0.5)
     simulation = mds.Simulation(yml_file='')  # yml_file can be remote on github
     # simulation = mds.Simulation(github_repo='https...', credentials='')
         # happens internally in metamds if mbuild.compound is passed
