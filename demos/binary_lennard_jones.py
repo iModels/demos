@@ -19,6 +19,11 @@ if __name__ == '__main__':
     # lammps input script
 
     compound = build_system([3, 3, 3], 200, 0.5)
+
+    compound.save('foo.top')
+
+    import pdb; pdb.set_trace()
+
     simulation = mds.Simulation(yml_file='')  # yml_file can be remote on github
     # simulation = mds.Simulation(github_repo='https...', credentials='')
         # happens internally in metamds if mbuild.compound is passed
