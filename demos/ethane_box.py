@@ -14,18 +14,6 @@ def build_ethane_box(box, n_molecules, **kwargs):
     return full_box
 
 
-# Input parameters
-parameters = {'n_molecules': 200,
-              'box': [3, 3, 3],
-              'forcefield': 'OPLS-aa'}
-
-# Build the initial configuration
-compound = build_ethane_box(**parameters)
-compound.visualize()
-
-parameters['compound'] = compound
-
-
 def create_run_script(compound, forcefield, **kwargs):
     name = compound.name
     em = 'em.mdp'
@@ -45,6 +33,17 @@ def create_run_script(compound, forcefield, **kwargs):
     return script
 
 if __name__ == '__main__':
+    # Input parameters
+    parameters = {'n_molecules': 200,
+                  'box': [3, 3, 3],
+                  'forcefield': 'OPLS-aa'}
+
+    # Build the initial configuration
+    compound = build_ethane_box(**parameters)
+    compound.visualize()
+
+    parameters['compound'] = compound
+
     # Initialize a simulation instance with a template and some metadata
     sim = mds.Simulation(name='ethane', template=create_run_script, project_dir='ethane_box')
 
@@ -61,6 +60,7 @@ if __name__ == '__main__':
     # Pick which one to select?
 
     traj = md.load('nvt.xtc', top='nvt.gro')
+    print(traj)
 
     # RDF
     # pairs = traj.top.select_pairs('name C', 'name C')
@@ -68,6 +68,7 @@ if __name__ == '__main__':
     # plt.plot(r, g_r)
     # plt.xlabel('r (nm)')
     # plt.ylabel('g(r)')
+    # plt.show()
     #
     # s2 = md.compute_nematic_order(traj, 'residues')
     # plt.plot(traj.time, s2)
