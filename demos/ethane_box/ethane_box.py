@@ -16,8 +16,7 @@ def build_ethane_box(box, n_molecules, **kwargs):
     return full_box
 
 
-def create_run_script(compound, forcefield, **kwargs):
-    input_dir = kwargs['input_dir']
+def create_run_script(compound, forcefield, input_dir, **kwargs):
     name = compound.name
     em = os.path.join(input_dir, 'em.mdp')
     nvt = os.path.join(input_dir, 'nvt.mdp')
@@ -54,7 +53,8 @@ if __name__ == '__main__':
     task = sim.parametrize(**parameters)
 
     # Run
-    task.execute(remote='', credentials='')
+    #task.execute()
+    task.execute(hostname='rahman.vuse.vanderbilt.edu', username='ctk3b')
     # task.status()
 
     # Analyze
