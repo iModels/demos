@@ -1,3 +1,5 @@
+import os
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -15,11 +17,12 @@ def build_ethane_box(box, n_molecules, **kwargs):
 
 
 def create_run_script(compound, forcefield, **kwargs):
+    input_dir = kwargs['input_dir']
     name = compound.name
-    em = 'em.mdp'
-    nvt = 'nvt.mdp'
-    gro = '{name}.gro'.format(name=name)
-    top = '{name}.top'.format(name=name)
+    em = os.path.join(input_dir, 'em.mdp')
+    nvt = os.path.join(input_dir, 'nvt.mdp')
+    gro = os.path.join(input_dir, '{name}.gro'.format(name=name))
+    top = os.path.join(input_dir, '{name}.top'.format(name=name))
 
     compound.save(top, forcefield=forcefield, overwrite=True)
 
@@ -40,12 +43,12 @@ if __name__ == '__main__':
 
     # Build the initial configuration
     compound = build_ethane_box(**parameters)
-    compound.visualize()
+    #compound.visualize()
 
     parameters['compound'] = compound
 
     # Initialize a simulation instance with a template and some metadata
-    sim = mds.Simulation(name='ethane', template=create_run_script, project_dir='ethane_box')
+    sim = mds.Simulation(name='ethane', template=create_run_script, project_dir='output')
 
     # Parameterize our simulation template
     task = sim.parametrize(**parameters)
@@ -59,7 +62,9 @@ if __name__ == '__main__':
     topologies = task.get_output('topologies')
     # Pick which one to select?
 
-    traj = md.load('nvt.xtc', top='nvt.gro')
+    trj_path = os.path.join(task.dir, 'nvt.xtc')
+    top_path = os.path.join(task.dir, 'nvt.gro')
+    traj = md.load(trj_path, top=top_path)
     print(traj)
 
     # RDF
