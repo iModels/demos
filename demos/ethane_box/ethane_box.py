@@ -47,23 +47,23 @@ if __name__ == '__main__':
     parameters['compound'] = compound
 
     # Initialize a simulation instance with a template and some metadata
-    sim = mds.Simulation(name='ethane', template=create_run_script, project_dir='output')
+    sim = mds.Simulation(name='ethane', template=create_run_script, output_dir='output')
 
     # Parameterize our simulation template
     task = sim.parametrize(**parameters)
 
     # Run
-    #task.execute()
-    task.execute(hostname='rahman.vuse.vanderbilt.edu', username='ctk3b')
+    task.execute()
+    #task.execute(hostname='rahman.vuse.vanderbilt.edu', username='ctk3b')
     # task.status()
 
     # Analyze
-    trajectories = task.get_output('trajectories')
-    topologies = task.get_output('topologies')
+    trajectories = task.get_output_files('trajectories')
+    topologies = task.get_output_files('topologies')
     # Pick which one to select?
 
-    trj_path = os.path.join(task.dir, 'nvt.xtc')
-    top_path = os.path.join(task.dir, 'nvt.gro')
+    trj_path = os.path.join(task.output_dir, 'nvt.xtc')
+    top_path = os.path.join(task.output_dir, 'nvt.gro')
     traj = md.load(trj_path, top=top_path)
     print(traj)
 
