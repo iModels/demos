@@ -1,4 +1,5 @@
 import os
+import time
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -53,9 +54,12 @@ if __name__ == '__main__':
     task = sim.parametrize(**parameters)
 
     # Run
-    task.execute()
-    #task.execute(hostname='rahman.vuse.vanderbilt.edu', username='ctk3b')
-    # task.status()
+    #task.execute()
+    task.execute(hostname='rahman.vuse.vanderbilt.edu', username='ctk3b')
+    print(task.status())
+
+    time.sleep(10)
+    task.sync()
 
     # Analyze
     trajectories = task.get_output_files('trajectories')
@@ -63,9 +67,10 @@ if __name__ == '__main__':
     # Pick which one to select?
 
     trj_path = os.path.join(task.output_dir, 'nvt.xtc')
-    top_path = os.path.join(task.output_dir, 'nvt.gro')
+    top_path = os.path.join(task.output_dir, 'em.gro')
     traj = md.load(trj_path, top=top_path)
     print(traj)
+    import pdb; pdb.set_trace()
 
     # RDF
     # pairs = traj.top.select_pairs('name C', 'name C')
