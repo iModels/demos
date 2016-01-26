@@ -1,0 +1,8 @@
+statements:
+  statements:
+  - load_compound:
+      compound: '{{ compound }}'
+      forcefield: '{{ forcefield }}'
+      system_name: '{{ system_name }}'
+  - binary_lj_sim:
+      system_name: '{{ system_name }}'

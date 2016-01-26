@@ -1,0 +1,8 @@
+# This is the simgen project configuration file for the test project
+
+# Specify project title
+title: Binary LJ Simulation Test Project with mBuild loading
+
+# Specify project search path
+path:
+ - https://github.com/imodels/demos/demos/ethane_box/binary_lj_sim
