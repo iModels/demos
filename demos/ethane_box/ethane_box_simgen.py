@@ -21,7 +21,7 @@ def build_ethane_box(box, n_molecules, **kwargs):
 
 if __name__ == '__main__':
     # # configure logging
-    logging.basicConfig(format='%(module)s:%(lineno)d %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=0)
+    # logging.basicConfig(format='%(module)s:%(lineno)d %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p', level=0)
 
     # Build the initial configuration
     ethane_box = build_ethane_box(n_molecules=200, box=[3, 3, 3])
@@ -45,14 +45,17 @@ if __name__ == '__main__':
     # Parameterize our simulation template
     task = sim.parametrize(**parameters)
 
+    print(task.script)
+
     # Run
     task.execute()
     # task.execute(hostname='rahman.vuse.vanderbilt.edu', username='ctk3b')
-    print(task.status())
+    # print(task.status())
 
-    time.sleep(10)
-    task.sync()
+    # time.sleep(10)
+    # task.sync()
 
+    import pdb; pdb.set_trace()
     # Analyze
     trajectories = task.get_output_files('trajectories')
     topologies = task.get_output_files('topologies')
