@@ -2685,16 +2685,27 @@
 ; i    j  func       b0          kb
   SI    OS      1    0.16300     251040.  ; From GROMACS
   SI    OH      1    0.16300     251040.  ;
+  SI    CT      1    0.18500     167360.  ;
 
 [ angletypes ]
 ;  i    j    k  func       th0       cth
    SI   OS   SI    1   155.000     397.480
+   SI   OH   SI    1   155.000     397.480
    OS   SI   OS    1   109.500     397.480
    OH   SI   OS    1   109.500     397.480
    SI   OH   HO    1   109.500     397.480
+   SI   CT   CT    1   120.000     254.97296
+   SI   CT   HC    1   109.500     418.480
+   OH   SI   CT    1   100.000     502.180
+   OH   SI   OH    1   110.000     502.180
+   OS   SI   CT    1   100.000     502.180
 
-;[ dihedraltypes ]
+[ dihedraltypes ]
 ;  i    j    k    l   func     coefficients
 ; Added DvdS for Quartz simulations
 ;   SI   OS    1     0.000       3.766      3
 ;   SI   OH    1     0.000       3.766      3
+  X      SI     OS     X       3     0.00000   0.00000   0.00000   0.00000   0.00000   0.00000
+  X      SI     OH     X       3     0.00000   0.00000   0.00000   0.00000   0.00000   0.00000
+  X      SI     CT     X       3     0.00000   0.00000   0.00000   0.00000   0.00000   0.00000
+  SI     CT     CT     X       3     0.00000   0.00000   0.00000   0.00000   0.00000   0.00000
