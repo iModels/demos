@@ -1,6 +1,6 @@
 statements:
   statements:
-  - load_compound:
+  - save_compound:
       compound: '{{ compound }}'
       forcefield: '{{ forcefield }}'
       system_name: '{{ system_name }}'

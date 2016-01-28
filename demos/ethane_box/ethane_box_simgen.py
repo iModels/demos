@@ -25,8 +25,16 @@ def generate_code(**parameters):
 
     if OFFLINE:
         # load simgen files from local folders
-        # project = Project(os.path.join(os.path.dirname(__file__), 'binary_lj_sim', 'offline_project.yaml'))
-        project = Project({'title':'Binary LJ Simulation', 'path': [os.path.join(os.path.dirname(__file__), 'binary_lj_sim')]})
+        res_dir = os.path.join(os.path.dirname(__file__), 'binary_lj_sim')
+
+        manifest = {
+            'title': 'Binary LJ Simulation Test Project with mBuild',
+            'code_path': [os.path.join(res_dir, 'code')],
+            'concept_path': [os.path.join(res_dir, 'concepts')],
+            'template_path': [os.path.join(res_dir, 'templates')]
+        }
+
+        project = Project(manifest)
     else:
         # load sigmen files from GitHub
         project = Project(os.path.join(os.path.dirname(__file__), 'binary_lj_sim', 'online_project.yaml'))
