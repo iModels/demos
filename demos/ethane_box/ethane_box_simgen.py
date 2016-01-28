@@ -24,10 +24,11 @@ def generate_code(**parameters):
     # import pdb; pdb.set_trace()
 
     if OFFLINE:
-    # load simgen files from local folders
-        project = Project(os.path.join(os.path.dirname(__file__), 'binary_lj_sim', 'offline_project.yaml'))
+        # load simgen files from local folders
+        # project = Project(os.path.join(os.path.dirname(__file__), 'binary_lj_sim', 'offline_project.yaml'))
+        project = Project({'title':'Binary LJ Simulation', 'path': [os.path.join(os.path.dirname(__file__), 'binary_lj_sim')]})
     else:
-    # load sigmen files from GitHub
+        # load sigmen files from GitHub
         project = Project(os.path.join(os.path.dirname(__file__), 'binary_lj_sim', 'online_project.yaml'))
 
     run_script = project.render('prg', output_dir='./', inject_dict=parameters)
