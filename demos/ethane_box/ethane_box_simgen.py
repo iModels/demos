@@ -24,10 +24,19 @@ def generate_code(**parameters):
     # import pdb; pdb.set_trace()
 
     if OFFLINE:
-    # load simgen files from local folders
-        project = Project(os.path.join(os.path.dirname(__file__), 'binary_lj_sim', 'offline_project.yaml'))
+        # load simgen files from local folders
+        res_dir = os.path.join(os.path.dirname(__file__), 'binary_lj_sim')
+
+        manifest = {
+            'title': 'Binary LJ Simulation Test Project with mBuild',
+            'code_path': [os.path.join(res_dir, 'code')],
+            'concept_path': [os.path.join(res_dir, 'concepts')],
+            'template_path': [os.path.join(res_dir, 'templates')]
+        }
+
+        project = Project(manifest)
     else:
-    # load sigmen files from GitHub
+        # load sigmen files from GitHub
         project = Project(os.path.join(os.path.dirname(__file__), 'binary_lj_sim', 'online_project.yaml'))
 
     run_script = project.render('prg', output_dir='./', inject_dict=parameters)
@@ -48,7 +57,7 @@ if __name__ == '__main__':
                   'system_name': 'ethane_box'}
 
     # Initialize a simulation instance with a template and some metadata
-    sim = mds.Simulation(name='ethane', template=generate_code, output_dir='./output')
+    sim = mds.Simulation(name='ethane', template=generate_code, input_dir='static_input_files', output_dir='simgen_output')
 
     # Parameterize our simulation template
     task = sim.parametrize(**parameters)
@@ -68,7 +77,7 @@ if __name__ == '__main__':
     trajectories = task.get_output_files('trajectories')
     topologies = task.get_output_files('topologies')
     # Pick which one to select?
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
 
     trj_path = os.path.join(task.output_dir, 'nvt.xtc')
     top_path = os.path.join(task.output_dir, 'em.gro')
