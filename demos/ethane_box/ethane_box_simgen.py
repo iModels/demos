@@ -19,7 +19,7 @@ def build_ethane_box(box, n_molecules, **kwargs):
     return full_box
 
 def generate_code(**parameters):
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     project = Project(os.path.join(os.path.dirname(__file__), 'binary_lj_sim', 'offline_project.yaml'))
     run_script = project.render('prg', output_dir='./', inject_dict=parameters)
     return [run_script]
@@ -45,7 +45,7 @@ if __name__ == '__main__':
     task = sim.parametrize(**parameters)
 
     print(task.script)
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
 
     # Run
     task.execute()
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     # time.sleep(10)
     # task.sync()
 
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     # Analyze
     trajectories = task.get_output_files('trajectories')
     topologies = task.get_output_files('topologies')
@@ -65,7 +65,7 @@ if __name__ == '__main__':
     top_path = os.path.join(task.output_dir, 'em.gro')
     traj = md.load(trj_path, top=top_path)
     print(traj)
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
 
     # RDF
     # pairs = traj.top.select_pairs('name C', 'name C')
