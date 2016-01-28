@@ -18,6 +18,11 @@ def build_ethane_box(box, n_molecules, **kwargs):
     full_box.name = '{}_ethanes'.format(n_molecules)
     return full_box
 
+def generate_code(**parameters):
+    import pdb; pdb.set_trace()
+    project = Project(os.path.join(os.path.dirname(__file__), 'binary_lj_sim', 'offline_project.yaml'))
+    run_script = project.render('prg', output_dir='./', inject_dict=parameters)
+    return [run_script]
 
 if __name__ == '__main__':
     # # configure logging
@@ -33,19 +38,14 @@ if __name__ == '__main__':
                   'forcefield': 'OPLS-aa',
                   'system_name': 'ethane_box'}
 
-    project = Project(os.path.join(os.getcwd(), 'binary_lj_sim', 'offline_project.yaml'))
-    run_script = project.render('prg', output_dir='./output', inject_dict=parameters)
-
-    # at this point, we have a script in run_script, as well as a number of files saved to the ./generated_code
-    # directory
-
     # Initialize a simulation instance with a template and some metadata
-    sim = mds.Simulation(name='ethane', template=[run_script], input_dir='./output')
+    sim = mds.Simulation(name='ethane', template=generate_code, output_dir='./output')
 
     # Parameterize our simulation template
     task = sim.parametrize(**parameters)
 
     print(task.script)
+    import pdb; pdb.set_trace()
 
     # Run
     task.execute()
