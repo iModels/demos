@@ -5,4 +5,4 @@ title: Binary LJ Simulation Test Project with mBuild loading
 
 # Specify project search path
 path:
- - /Users/sallai/PycharmProjects/demos/demos/ethane_box/binary_lj_sim
+ - /Users/ctk3b/science/python/imodels/demos/demos/ethane_box/binary_lj_sim

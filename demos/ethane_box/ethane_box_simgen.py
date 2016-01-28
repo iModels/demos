@@ -34,13 +34,13 @@ if __name__ == '__main__':
                   'system_name': 'ethane_box'}
 
     project = Project(os.path.join(os.getcwd(), 'binary_lj_sim', 'offline_project.yaml'))
-    run_script = project.render('prg', output_dir='./output', inject_dict=parameters)
+    run_script = project.render('prg', output_dir='output', inject_dict=parameters)
 
     # at this point, we have a script in run_script, as well as a number of files saved to the ./generated_code
     # directory
 
     # Initialize a simulation instance with a template and some metadata
-    sim = mds.Simulation(name='ethane', template=[run_script], input_dir='./output')
+    sim = mds.Simulation(name='ethane', template=[run_script], output_dir='output')
 
     # Parameterize our simulation template
     task = sim.parametrize(**parameters)
@@ -55,11 +55,11 @@ if __name__ == '__main__':
     # time.sleep(10)
     # task.sync()
 
-    import pdb; pdb.set_trace()
     # Analyze
     trajectories = task.get_output_files('trajectories')
     topologies = task.get_output_files('topologies')
     # Pick which one to select?
+    import pdb; pdb.set_trace()
 
     trj_path = os.path.join(task.output_dir, 'nvt.xtc')
     top_path = os.path.join(task.output_dir, 'em.gro')

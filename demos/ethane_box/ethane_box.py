@@ -21,8 +21,8 @@ def create_run_script(compound, forcefield, input_dir, **kwargs):
     name = compound.name
     em = os.path.join(input_dir, 'em.mdp')
     nvt = os.path.join(input_dir, 'nvt.mdp')
-    gro = os.path.join(input_dir, '{name}.gro'.format(name=name))
-    top = os.path.join(input_dir, '{name}.top'.format(name=name))
+    gro = '{name}.gro'.format(name=name)
+    top = '{name}.top'.format(name=name)
 
     compound.save(top, forcefield=forcefield, overwrite=True)
 
@@ -70,7 +70,6 @@ if __name__ == '__main__':
     top_path = os.path.join(task.output_dir, 'em.gro')
     traj = md.load(trj_path, top=top_path)
     print(traj)
-    import pdb; pdb.set_trace()
 
     # RDF
     # pairs = traj.top.select_pairs('name C', 'name C')
