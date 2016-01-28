@@ -11,6 +11,8 @@ import mdtraj as md
 
 from simgen.project import Project
 
+OFFLINE = True
+
 def build_ethane_box(box, n_molecules, **kwargs):
     from mbuild.examples import Ethane
     ethane = Ethane()
@@ -20,7 +22,14 @@ def build_ethane_box(box, n_molecules, **kwargs):
 
 def generate_code(**parameters):
     # import pdb; pdb.set_trace()
-    project = Project(os.path.join(os.path.dirname(__file__), 'binary_lj_sim', 'offline_project.yaml'))
+
+    if OFFLINE:
+    # load simgen files from local folders
+        project = Project(os.path.join(os.path.dirname(__file__), 'binary_lj_sim', 'offline_project.yaml'))
+    else:
+    # load sigmen files from GitHub
+        project = Project(os.path.join(os.path.dirname(__file__), 'binary_lj_sim', 'online_project.yaml'))
+
     run_script = project.render('prg', output_dir='./', inject_dict=parameters)
     return [run_script]
 
