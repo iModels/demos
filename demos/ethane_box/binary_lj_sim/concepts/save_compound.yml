@@ -1,6 +1,6 @@
-# description of the 'load_compound' ast node type
+# description of the 'save_compound' ast node type
 #
-description: "load compound"
+description: "save compound"
 # ast node properties
 properties:
   compound:
