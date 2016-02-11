@@ -15,6 +15,7 @@ def build_monolayer(chain_length, n_molecules, **kwargs):
     pattern = mb.Random2DPattern(n_molecules)
     monolayer = AlkaneMonolayer(pattern, tile_x=1, tile_y=1, chain_length=chain_length)
     monolayer.name = 'alkane_n-{}_l-{}'.format(n_molecules, chain_length)
+    mb.translate(monolayer, [0, 0, 2])
     return monolayer
 
 
