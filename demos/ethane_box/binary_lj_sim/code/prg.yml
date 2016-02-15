@@ -1,8 +1,10 @@
 statements:
   statements:
-  - save_compound:
+  - mbuild:
       compound: '{{ compound }}'
       forcefield: '{{ forcefield }}'
       system_name: '{{ system_name }}'
-  - binary_lj_sim:
+  - minimize_energy:
+      system_name: '{{ system_name }}'
+  - nvt:
       system_name: '{{ system_name }}'

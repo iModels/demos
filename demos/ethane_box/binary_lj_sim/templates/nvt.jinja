@@ -1,0 +1,41 @@
+{# generate nvt code, save it to 'nvt.mdp' #}
+{% redirect 'nvt.mdp' %}
+comm_mode       = linear
+integrator      = md
+nsteps          = {{steps}}
+dt              = 0.001
+nstxout         = 5000
+nstvout         = 5000
+nstfout         = 0
+nstlog          = 100
+nstenergy       = 100
+nstxout-compressed = 500
+
+nstlist         = 10
+ns_type         = grid
+rlist           = 1.0
+coulombtype     = pme
+rcoulomb        = 1.0
+rvdw            = {{ r_cut }} ; (default: 1.0)
+constraints     = h-bonds
+pbc             = xyz
+
+tcoupl          = v-rescale
+tc_grps         = System
+ref_t           = {{ T }} ; (default: 298.15)
+tau_t           = {{ tau }} ; (default: 1.0)
+
+pcoupl          = no
+{% endredirect %}
+{# generate shell script to call gromacs #}
+{# this code assumes that <system_name>.top and .gro files exist #}
+{% redirect 'nvt.sh' %}
+#!/bin/sh
+
+# call grompp on nvt
+gmx grompp -f nvt.mdp -c em.gro -p {{system_name}}.top -o nvt.tpr
+
+# mdrun nvt
+gmx mdrun -v -deffnm nvt
+{% endredirect %}
+/bin/sh ./nvt.sh
