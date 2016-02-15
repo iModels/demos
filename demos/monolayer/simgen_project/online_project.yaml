@@ -5,8 +5,8 @@ title: Monolayer example
 
 # Specify project search path
 code_path:
- - https://github.com/imodels/demos/demos/monolajer/simgen_project/code
+ - https://github.com/imodels/demos/demos/monolayer/simgen_project/code
 concept_path:
- - https://github.com/imodels/demos/demos/monolajer/simgen_project/concepts
+ - https://github.com/imodels/demos/demos/monolayer/simgen_project/concepts
 template_path:
- - https://github.com/imodels/demos/demos/monolajer/simgen_project/templates
+ - https://github.com/imodels/demos/demos/monolayer/simgen_project/templates
