@@ -1,0 +1,8 @@
+description: list of statements
+properties:
+  statements:
+    description: statements
+    type: list
+    default: []
+name: statements
+tags: []

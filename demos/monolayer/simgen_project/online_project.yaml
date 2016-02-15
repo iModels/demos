@@ -1,0 +1,12 @@
+# This is the simgen project configuration file for the test project
+
+# Specify project title
+title: Monolayer example
+
+# Specify project search path
+code_path:
+ - https://github.com/imodels/demos/demos/monolajer/simgen_project/code
+concept_path:
+ - https://github.com/imodels/demos/demos/monolajer/simgen_project/concepts
+template_path:
+ - https://github.com/imodels/demos/demos/monolajer/simgen_project/templates
