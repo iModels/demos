@@ -8,3 +8,6 @@ statements:
       system_name: '{{ system_name }}'
   - nvt:
       system_name: '{{ system_name }}'
+      T: 1
+      tau: 1
+      steps: 2000
