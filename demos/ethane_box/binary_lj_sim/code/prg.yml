@@ -5,9 +5,13 @@ statements:
       forcefield: '{{ forcefield }}'
       system_name: '{{ system_name }}'
   - minimize_energy:
+      r_coulomb: 1
       system_name: '{{ system_name }}'
+      energy_step_size: 0.01
+      steps: 5000
   - nvt:
+      r_cut: 1
       system_name: '{{ system_name }}'
-      T: 1
+      T: 298.15
       tau: 1
       steps: 2000
