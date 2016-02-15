@@ -5,4 +5,8 @@ statements:
       forcefield: '{{ forcefield }}'
       system_name: '{{ system_name }}'
   - binary_lj_sim:
+      r_cut: 3
       system_name: '{{ system_name }}'
+      T: 1
+      tau: 1
+      steps: 1000
