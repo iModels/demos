@@ -39,8 +39,7 @@ def generate_code(**parameters):
         # load sigmen files from GitHub
         project = Project(os.path.join(os.path.dirname(__file__), 'binary_lj_sim', 'online_project.yaml'))
 
-    run_script = project.render('prg', output_dir='./', inject_dict=parameters)
-    return [run_script]
+    return project.render_tasks('prg', output_dir='./', inject_dict=parameters)
 
 if __name__ == '__main__':
     # # configure logging
@@ -62,7 +61,6 @@ if __name__ == '__main__':
     # Parameterize our simulation template
     task = sim.parametrize(**parameters)
 
-    print(task.script)
     # import pdb; pdb.set_trace()
 
     # Run
