@@ -15,9 +15,3 @@ statements:
       T: 298.15
       tau: 1
       steps: 2000
-  - nvt:
-      r_cut: 1
-      system_name: '{{ system_name }}'
-      T: 325
-      tau: 1
-      steps: 2000
