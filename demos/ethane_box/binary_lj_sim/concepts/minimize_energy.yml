@@ -1,18 +1,21 @@
-description: "Energy minimization"
+description: Energy minimization
 properties:
   r_coulomb:
-      description: "Electrostatic cutoff"
-      type: number
-      default: 1.0
+    description: Electrostatic cutoff
+    type: number
+    default: 1
   system_name:
-      description: "filename of the input system, without extension"
-      type: string
+    description: 'filename of the input system, without extension'
+    type: string
   energy_step_size:
-      description: "Energy step size"
-      type: number
-      default: 0.01
+    description: Energy step size
+    type: number
+    default: 0.01
   steps:
-      description: "number of steps to run minimization"
-      type: number
-      default: 5000
-required: [system_name]
+    description: number of steps to run minimization
+    type: number
+    default: 5000
+required:
+  - system_name
+name: minimize_energy
+tags: []
